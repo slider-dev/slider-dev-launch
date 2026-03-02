@@ -68,7 +68,7 @@ const Apis = () => {
       <Navbar />
 
       {/* Hero */}
-      <section className="relative flex items-center justify-center overflow-hidden circuit-bg scanlines pt-32 pb-20 md:pt-40 md:pb-28">
+      <section className="relative flex items-center justify-center circuit-bg scanlines pt-32 pb-20 md:pt-40 md:pb-28">
         <div className="pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full bg-primary/10 blur-[120px]" />
         <div className="container relative z-10 mx-auto px-6 text-center">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
@@ -85,8 +85,12 @@ const Apis = () => {
       </section>
 
       {/* Categories */}
-      <section className="relative py-20 circuit-bg">
-        <div className="container mx-auto px-6">
+      <section className="relative py-20 circuit-bg overflow-visible">
+        {/* Background radial glows */}
+        <div className="pointer-events-none absolute top-[10%] left-[15%] h-[500px] w-[500px] rounded-full bg-primary/5 blur-[140px]" />
+        <div className="pointer-events-none absolute top-[40%] right-[10%] h-[400px] w-[400px] rounded-full bg-primary/4 blur-[120px]" />
+        <div className="pointer-events-none absolute bottom-[15%] left-[30%] h-[450px] w-[450px] rounded-full bg-primary/5 blur-[130px]" />
+        <div className="container relative z-10 mx-auto px-6">
           {categories.map((cat) => (
             <div key={cat.name} className="mb-20 last:mb-0">
               {/* Category header */}
