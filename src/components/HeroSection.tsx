@@ -2,7 +2,7 @@ import { ArrowRight, Zap } from "lucide-react";
 
 const HeroSection = () => {
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden circuit-bg scanlines">
+    <section className="relative flex min-h-screen items-center justify-center overflow-hidden circuit-bg scanlines pt-24 md:pt-0">
       {/* Radial glow behind hero */}
       <div className="pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full bg-primary/10 blur-[120px]" />
 
