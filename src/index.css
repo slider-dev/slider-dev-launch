@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 7.1%;
+    --foreground: 220 9% 91%;
+
+    --card: 0 0% 10%;
+    --card-foreground: 220 9% 91%;
+
+    --popover: 0 0% 10%;
+    --popover-foreground: 220 9% 91%;
+
+    --primary: 25 95% 53%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 14%;
+    --secondary-foreground: 220 9% 91%;
+
+    --muted: 0 0% 16%;
+    --muted-foreground: 220 9% 60%;
+
+    --accent: 25 95% 53%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 25 95% 53%;
+
+    --radius: 0.5rem;
+
+    --glass-bg: 0 0% 12% / 0.6;
+    --glass-border: 0 0% 100% / 0.08;
+    --glow-orange: 25 95% 53% / 0.3;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+/* Circuit board background pattern */
+.circuit-bg {
+  background-image:
+    linear-gradient(hsl(0 0% 100% / 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(0 0% 100% / 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: hsl(var(--glass-bg));
+  backdrop-filter: blur(16px);
+  border: 1px solid hsl(var(--glass-border));
+}
+
+/* Glow effect for accent elements */
+.glow-accent {
+  box-shadow: 0 0 20px hsl(var(--glow-orange)), 0 0 60px hsl(25 95% 53% / 0.1);
+}
+
+/* Subtle scan line effect */
+.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    hsl(0 0% 0% / 0.03) 2px,
+    hsl(0 0% 0% / 0.03) 4px
+  );
+  pointer-events: none;
+}
