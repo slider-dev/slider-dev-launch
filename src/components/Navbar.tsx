@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, LogOut } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
+  const { user, logout } = useAuth();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -54,6 +56,15 @@ const Navbar = () => {
           >
             Get Started
           </Link>
+          {user && (
+            <button
+              onClick={logout}
+              className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+            >
+              <LogOut className="h-4 w-4" />
+              Logout
+            </button>
+          )}
         </div>
 
         {/* Mobile toggle */}
@@ -86,6 +97,15 @@ const Navbar = () => {
           >
             Get Started
           </Link>
+          {user && (
+            <button
+              onClick={logout}
+              className="flex items-center justify-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+            >
+              <LogOut className="h-4 w-4" />
+              Logout
+            </button>
+          )}
         </div>
       )}
     </nav>
