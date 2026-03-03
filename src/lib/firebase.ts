@@ -3,7 +3,7 @@ import { getAuth, GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyD-id0oBuxq3TTm0PE8BZu8Nx8JjvllpPg",
-  authDomain: "slider-c2254.firebaseapp.com",
+  authDomain: "slider.tanjirodev.online",
   projectId: "slider-c2254",
   storageBucket: "slider-c2254.firebasestorage.app",
   messagingSenderId: "485772435185",
