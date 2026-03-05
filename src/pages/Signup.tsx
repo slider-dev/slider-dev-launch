@@ -2,13 +2,15 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const Login = () => {
-  const { user, loading, signInWithGoogle, signInWithGithub, signInWithEmail } = useAuth();
+const Signup = () => {
+  const { user, loading, signInWithGoogle, signInWithGithub, signUpWithEmail } = useAuth();
   const navigate = useNavigate();
   const [error, setError] = useState<string | null>(null);
-  const [signingIn, setSigningIn] = useState(false);
+  const [signingUp, setSigningUp] = useState(false);
+  const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   useEffect(() => {
     if (!loading && user) navigate("/", { replace: true });
@@ -16,31 +18,48 @@ const Login = () => {
 
   const handleGoogle = async () => {
     setError(null);
-    setSigningIn(true);
-    try { await signInWithGoogle(); } catch (e: any) { setError(e?.message || "Google sign-in failed"); } finally { setSigningIn(false); }
+    setSigningUp(true);
+    try { await signInWithGoogle(); } catch (e: any) { setError(e?.message || "Google sign-in failed"); } finally { setSigningUp(false); }
   };
 
   const handleGithub = async () => {
     setError(null);
-    setSigningIn(true);
-    try { await signInWithGithub(); } catch (e: any) { setError(e?.message || "GitHub sign-in failed"); } finally { setSigningIn(false); }
+    setSigningUp(true);
+    try { await signInWithGithub(); } catch (e: any) { setError(e?.message || "GitHub sign-in failed"); } finally { setSigningUp(false); }
   };
 
-  const handleEmailLogin = async (e: React.FormEvent) => {
+  const handleEmailSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-    if (!email || !password) { setError("Please fill in all fields."); return; }
-    setSigningIn(true);
+
+    if (!fullName.trim() || !email || !password || !confirmPassword) {
+      setError("Please fill in all fields.");
+      return;
+    }
+    if (fullName.trim().length > 100) {
+      setError("Name must be less than 100 characters.");
+      return;
+    }
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters.");
+      return;
+    }
+    if (password !== confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
+
+    setSigningUp(true);
     try {
-      await signInWithEmail(email, password);
+      await signUpWithEmail(email, password, fullName.trim());
     } catch (err: any) {
-      if (err?.code === "auth/user-not-found" || err?.code === "auth/invalid-credential") {
-        setError("Invalid email or password. Please try again.");
+      if (err?.code === "auth/email-already-in-use") {
+        setError("This email is already registered. Please Sign In instead.");
       } else {
-        setError(err?.message || "Sign in failed");
+        setError(err?.message || "Sign up failed");
       }
     } finally {
-      setSigningIn(false);
+      setSigningUp(false);
     }
   };
 
@@ -53,7 +72,7 @@ const Login = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background circuit-bg relative flex items-center justify-center px-4">
+    <div className="min-h-screen bg-background circuit-bg relative flex items-center justify-center px-4 py-8">
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-primary/10 blur-[120px] pointer-events-none" />
 
       <div className="relative z-10 w-full max-w-md">
@@ -62,47 +81,74 @@ const Login = () => {
             <span className="text-primary">slider</span>
             <span className="text-muted-foreground"> - dev</span>
           </h1>
-          <p className="text-muted-foreground mt-2 text-sm">Sign in to access the platform</p>
+          <p className="text-muted-foreground mt-2 text-sm">Create your developer account</p>
         </div>
 
         <div className="glass rounded-xl p-8 space-y-6">
           <div className="text-center">
-            <h2 className="text-xl font-display font-semibold text-foreground">Welcome back</h2>
-            <p className="text-muted-foreground text-sm mt-1">Sign in to your account</p>
+            <h2 className="text-xl font-display font-semibold text-foreground">Create Account</h2>
+            <p className="text-muted-foreground text-sm mt-1">Join the platform today</p>
           </div>
 
           {error && (
-            <div className="rounded-lg bg-destructive/10 border border-destructive/20 px-4 py-3 text-sm text-destructive">
-              {error}
+            <div
+              className="rounded-lg px-4 py-3 text-sm font-medium"
+              style={{
+                backgroundColor: error.includes("already registered")
+                  ? "hsl(25 95% 53% / 0.12)"
+                  : "hsl(var(--destructive) / 0.1)",
+                borderColor: error.includes("already registered")
+                  ? "hsl(25 95% 53% / 0.25)"
+                  : "hsl(var(--destructive) / 0.2)",
+                color: error.includes("already registered")
+                  ? "hsl(25 95% 53%)"
+                  : "hsl(var(--destructive))",
+                border: "1px solid",
+              }}
+            >
+              {error}{" "}
+              {error.includes("already registered") && (
+                <Link to="/login" className="underline font-semibold">Go to Sign In →</Link>
+              )}
             </div>
           )}
 
-          {/* Email/Password Form */}
-          <form onSubmit={handleEmailLogin} className="space-y-4">
-            <div>
-              <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full rounded-lg border border-border bg-secondary/50 px-4 py-3 text-sm font-mono text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
-              />
-            </div>
-            <div>
-              <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full rounded-lg border border-border bg-secondary/50 px-4 py-3 text-sm font-mono text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
-              />
-            </div>
+          {/* Email/Password Signup Form */}
+          <form onSubmit={handleEmailSignup} className="space-y-4">
+            <input
+              type="text"
+              placeholder="Full Name"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+              className="w-full rounded-lg border border-border bg-secondary/50 px-4 py-3 text-sm font-mono text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full rounded-lg border border-border bg-secondary/50 px-4 py-3 text-sm font-mono text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full rounded-lg border border-border bg-secondary/50 px-4 py-3 text-sm font-mono text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+            />
+            <input
+              type="password"
+              placeholder="Confirm Password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              className="w-full rounded-lg border border-border bg-secondary/50 px-4 py-3 text-sm font-mono text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+            />
             <button
               type="submit"
-              disabled={signingIn}
+              disabled={signingUp}
               className="w-full rounded-lg bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground transition-all hover:brightness-110 glow-accent disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {signingIn ? "Signing in..." : "Sign In"}
+              {signingUp ? "Creating account..." : "Create Account"}
             </button>
           </form>
 
@@ -115,7 +161,7 @@ const Login = () => {
           <div className="space-y-3">
             <button
               onClick={handleGoogle}
-              disabled={signingIn}
+              disabled={signingUp}
               className="w-full flex items-center justify-center gap-3 rounded-lg border border-border bg-secondary/50 px-4 py-3 text-sm font-medium text-foreground transition-all hover:bg-secondary hover:border-primary/30 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <svg className="h-5 w-5" viewBox="0 0 24 24">
@@ -128,7 +174,7 @@ const Login = () => {
             </button>
             <button
               onClick={handleGithub}
-              disabled={signingIn}
+              disabled={signingUp}
               className="w-full flex items-center justify-center gap-3 rounded-lg border border-border bg-secondary/50 px-4 py-3 text-sm font-medium text-foreground transition-all hover:bg-secondary hover:border-primary/30 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -140,9 +186,9 @@ const Login = () => {
 
           <div className="text-center">
             <p className="text-sm text-muted-foreground">
-              Don't have an account?{" "}
-              <Link to="/signup" className="text-primary hover:underline font-medium">
-                Create Account
+              Already have an account?{" "}
+              <Link to="/login" className="text-primary hover:underline font-medium">
+                Sign In
               </Link>
             </p>
           </div>
@@ -158,4 +204,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;
