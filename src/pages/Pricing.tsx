@@ -1,4 +1,3 @@
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Check, Terminal, Zap, Crown } from "lucide-react";
 
@@ -60,12 +59,10 @@ const tiers = [
 
 const Pricing = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-
+    <>
       {/* Hero */}
-      <section className="relative flex items-center justify-center overflow-hidden circuit-bg scanlines pt-32 pb-20 md:pt-40 md:pb-28">
-        <div className="pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full bg-primary/10 blur-[120px]" />
+      <section className="relative flex items-center justify-center overflow-visible circuit-bg scanlines pt-32 pb-20 md:pt-40 md:pb-28">
+        <div className="pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full bg-primary/10 blur-[120px] -z-10" />
         <div className="container relative z-10 mx-auto px-6 text-center">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
             <Zap className="h-3.5 w-3.5" />
@@ -81,10 +78,9 @@ const Pricing = () => {
       </section>
 
       {/* Pricing cards */}
-      <section className="relative py-20 circuit-bg">
-        {/* Background glows */}
-        <div className="pointer-events-none absolute top-1/4 left-1/4 h-[400px] w-[400px] rounded-full bg-primary/5 blur-[120px]" />
-        <div className="pointer-events-none absolute bottom-1/4 right-1/4 h-[400px] w-[400px] rounded-full bg-primary/5 blur-[120px]" />
+      <section className="relative py-20 circuit-bg overflow-visible">
+        <div className="pointer-events-none absolute top-[10%] left-[15%] h-[500px] w-[500px] rounded-full bg-primary/[0.05] blur-[140px] -z-10" />
+        <div className="pointer-events-none absolute bottom-[10%] right-[10%] h-[500px] w-[500px] rounded-full bg-primary/[0.05] blur-[140px] -z-10" />
 
         <div className="container relative z-10 mx-auto px-6">
           <div className="grid gap-8 md:grid-cols-3">
@@ -101,7 +97,6 @@ const Pricing = () => {
                   <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent" />
                 )}
 
-                {/* Terminal title bar */}
                 <div className="flex items-center gap-2 border-b border-border px-4 py-2">
                   <div className={`h-2.5 w-2.5 rounded-full ${tier.featured ? "bg-primary" : "bg-primary/60"}`} />
                   <div className="h-2.5 w-2.5 rounded-full bg-muted-foreground/30" />
@@ -148,7 +143,7 @@ const Pricing = () => {
       </section>
 
       <Footer />
-    </div>
+    </>
   );
 };
 

@@ -2,7 +2,6 @@ import { useState } from "react";
 import { updateProfile } from "firebase/auth";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-import Navbar from "@/components/Navbar";
 import { LogOut, Save, Mail, Github, Chrome, KeyRound } from "lucide-react";
 
 const Profile = () => {
@@ -56,18 +55,12 @@ const Profile = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background relative overflow-hidden">
-      <Navbar />
-
+    <div className="relative">
       {/* Grid background */}
-      <div className="fixed inset-0 opacity-[0.03]" style={{
+      <div className="fixed inset-0 -z-10 opacity-[0.03]" style={{
         backgroundImage: "linear-gradient(hsl(var(--muted-foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--muted-foreground)) 1px, transparent 1px)",
         backgroundSize: "60px 60px",
       }} />
-
-      {/* Orange glows */}
-      <div className="fixed top-1/4 left-1/4 w-96 h-96 rounded-full opacity-10" style={{ background: "radial-gradient(circle, hsl(var(--primary)), transparent 70%)" }} />
-      <div className="fixed bottom-1/4 right-1/4 w-80 h-80 rounded-full opacity-10" style={{ background: "radial-gradient(circle, hsl(var(--primary)), transparent 70%)" }} />
 
       <div className="relative z-10 flex items-center justify-center min-h-screen px-4 pt-24 pb-12">
         <div className="w-full max-w-lg animate-fade-in">
