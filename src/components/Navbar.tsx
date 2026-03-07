@@ -98,20 +98,27 @@ const Navbar = () => {
               {link.label}
             </Link>
           ))}
-          <Link
-            to="/apis"
-            className="rounded-md bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground transition-all hover:brightness-110 glow-accent text-center"
-          >
-            Get Started
-          </Link>
-          {user && (
-            <button
-              onClick={logout}
-              className="flex items-center justify-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+          {user ? (
+            <Link
+              to="/profile"
+              className="flex items-center justify-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
             >
-              <LogOut className="h-4 w-4" />
-              Logout
-            </button>
+              {user.photoURL ? (
+                <img src={user.photoURL} alt="Avatar" className="h-7 w-7 rounded-full object-cover ring-2 ring-primary/60" />
+              ) : (
+                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-secondary to-muted text-xs font-bold text-primary ring-2 ring-primary/60 font-mono">
+                  {(user.displayName || user.email || "U")[0].toUpperCase()}
+                </div>
+              )}
+              Profile
+            </Link>
+          ) : (
+            <Link
+              to="/apis"
+              className="rounded-md bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground transition-all hover:brightness-110 glow-accent text-center"
+            >
+              Get Started
+            </Link>
           )}
         </div>
       )}
