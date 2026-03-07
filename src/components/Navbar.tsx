@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, LogOut } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 
 const Navbar = () => {
@@ -50,20 +50,27 @@ const Navbar = () => {
               {link.label}
             </Link>
           ))}
-          <Link
-            to="/apis"
-            className="rounded-md bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground transition-all hover:brightness-110 glow-accent"
-          >
-            Get Started
-          </Link>
-          {user && (
-            <button
-              onClick={logout}
-              className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+          {user ? (
+            <Link to="/profile" className="flex items-center">
+              {user.photoURL ? (
+                <img
+                  src={user.photoURL}
+                  alt="Avatar"
+                  className="h-8 w-8 rounded-full object-cover ring-2 ring-primary/60 transition-transform hover:scale-110"
+                />
+              ) : (
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-secondary to-muted text-xs font-bold text-primary ring-2 ring-primary/60 font-mono transition-transform hover:scale-110">
+                  {(user.displayName || user.email || "U")[0].toUpperCase()}
+                </div>
+              )}
+            </Link>
+          ) : (
+            <Link
+              to="/apis"
+              className="rounded-md bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground transition-all hover:brightness-110 glow-accent"
             >
-              <LogOut className="h-4 w-4" />
-              Logout
-            </button>
+              Get Started
+            </Link>
           )}
         </div>
 
@@ -91,20 +98,27 @@ const Navbar = () => {
               {link.label}
             </Link>
           ))}
-          <Link
-            to="/apis"
-            className="rounded-md bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground transition-all hover:brightness-110 glow-accent text-center"
-          >
-            Get Started
-          </Link>
-          {user && (
-            <button
-              onClick={logout}
-              className="flex items-center justify-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+          {user ? (
+            <Link
+              to="/profile"
+              className="flex items-center justify-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
             >
-              <LogOut className="h-4 w-4" />
-              Logout
-            </button>
+              {user.photoURL ? (
+                <img src={user.photoURL} alt="Avatar" className="h-7 w-7 rounded-full object-cover ring-2 ring-primary/60" />
+              ) : (
+                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-secondary to-muted text-xs font-bold text-primary ring-2 ring-primary/60 font-mono">
+                  {(user.displayName || user.email || "U")[0].toUpperCase()}
+                </div>
+              )}
+              Profile
+            </Link>
+          ) : (
+            <Link
+              to="/apis"
+              className="rounded-md bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground transition-all hover:brightness-110 glow-accent text-center"
+            >
+              Get Started
+            </Link>
           )}
         </div>
       )}
