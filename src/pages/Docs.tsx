@@ -65,9 +65,9 @@ const Docs = () => {
       </section>
 
       {/* Docs layout */}
-      <section className="relative circuit-bg min-h-[60vh] overflow-visible">
-        <div className="pointer-events-none absolute top-[20%] left-[10%] h-[400px] w-[400px] rounded-full bg-primary/[0.05] blur-[120px] -z-10" />
-        <div className="pointer-events-none absolute bottom-[10%] right-[15%] h-[400px] w-[400px] rounded-full bg-primary/[0.04] blur-[110px] -z-10" />
+      <section className="relative circuit-bg min-h-[60vh] overflow-hidden">
+        <div className="pointer-events-none absolute top-[20%] left-[10%] h-[40vw] max-h-[400px] w-[40vw] max-w-[400px] rounded-full bg-primary/[0.05] blur-[120px] -z-10" />
+        <div className="pointer-events-none absolute bottom-[10%] right-[15%] h-[40vw] max-h-[400px] w-[40vw] max-w-[400px] rounded-full bg-primary/[0.04] blur-[110px] -z-10" />
 
         <div className="container relative z-10 mx-auto px-6 py-12">
           <div className="flex gap-8">

@@ -78,9 +78,9 @@ const Pricing = () => {
       </section>
 
       {/* Pricing cards */}
-      <section className="relative py-20 circuit-bg overflow-visible">
-        <div className="pointer-events-none absolute top-[10%] left-[15%] h-[500px] w-[500px] rounded-full bg-primary/[0.05] blur-[140px] -z-10" />
-        <div className="pointer-events-none absolute bottom-[10%] right-[10%] h-[500px] w-[500px] rounded-full bg-primary/[0.05] blur-[140px] -z-10" />
+      <section className="relative py-20 circuit-bg overflow-hidden">
+        <div className="pointer-events-none absolute top-[10%] left-[15%] h-[50vw] max-h-[500px] w-[50vw] max-w-[500px] rounded-full bg-primary/[0.05] blur-[140px] -z-10" />
+        <div className="pointer-events-none absolute bottom-[10%] right-[10%] h-[50vw] max-h-[500px] w-[50vw] max-w-[500px] rounded-full bg-primary/[0.05] blur-[140px] -z-10" />
 
         <div className="container relative z-10 mx-auto px-6">
           <div className="grid gap-8 md:grid-cols-3">
