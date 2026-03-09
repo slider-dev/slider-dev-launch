@@ -48,8 +48,8 @@ const Docs = () => {
   return (
     <>
       {/* Hero */}
-      <section className="relative flex items-center justify-center overflow-visible circuit-bg scanlines pt-32 pb-12 md:pt-40 md:pb-16">
-        <div className="pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full bg-primary/10 blur-[120px] -z-10" />
+      <section className="relative flex items-center justify-center overflow-hidden circuit-bg scanlines pt-32 pb-12 md:pt-40 md:pb-16">
+        <div className="pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[60vw] max-h-[600px] w-[60vw] max-w-[600px] rounded-full bg-primary/10 blur-[120px] -z-10" />
         <div className="container relative z-10 mx-auto px-6 text-center">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
             <BookOpen className="h-3.5 w-3.5" />
@@ -65,9 +65,9 @@ const Docs = () => {
       </section>
 
       {/* Docs layout */}
-      <section className="relative circuit-bg min-h-[60vh] overflow-visible">
-        <div className="pointer-events-none absolute top-[20%] left-[10%] h-[400px] w-[400px] rounded-full bg-primary/[0.05] blur-[120px] -z-10" />
-        <div className="pointer-events-none absolute bottom-[10%] right-[15%] h-[400px] w-[400px] rounded-full bg-primary/[0.04] blur-[110px] -z-10" />
+      <section className="relative circuit-bg min-h-[60vh] overflow-hidden">
+        <div className="pointer-events-none absolute top-[20%] left-[10%] h-[40vw] max-h-[400px] w-[40vw] max-w-[400px] rounded-full bg-primary/[0.05] blur-[120px] -z-10" />
+        <div className="pointer-events-none absolute bottom-[10%] right-[15%] h-[40vw] max-h-[400px] w-[40vw] max-w-[400px] rounded-full bg-primary/[0.04] blur-[110px] -z-10" />
 
         <div className="container relative z-10 mx-auto px-6 py-12">
           <div className="flex gap-8">

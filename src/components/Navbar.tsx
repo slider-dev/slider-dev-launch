@@ -27,11 +27,11 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 inset-x-0 z-50 w-full max-w-[100vw] transition-all duration-300 ${
         scrolled || menuOpen ? "glass shadow-lg" : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto flex items-center justify-between px-6 py-4">
+      <div className="w-full flex items-center justify-between px-6 py-4 max-w-7xl mx-auto">
         <Link to="/" className="font-display text-xl font-bold tracking-tight">
           <span className="text-primary">slider</span>
           <span className="text-muted-foreground"> - dev</span>

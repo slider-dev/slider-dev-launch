@@ -65,8 +65,8 @@ const Apis = () => {
   return (
     <>
       {/* Hero */}
-      <section className="relative flex items-center justify-center circuit-bg scanlines pt-32 pb-20 md:pt-40 md:pb-28 overflow-visible">
-        <div className="pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[800px] w-[800px] rounded-full bg-primary/[0.08] blur-[160px] -z-10" />
+      <section className="relative flex items-center justify-center circuit-bg scanlines pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+        <div className="pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[80vw] max-h-[800px] w-[80vw] max-w-[800px] rounded-full bg-primary/[0.08] blur-[160px] -z-10" />
         <div className="container relative z-10 mx-auto px-6 text-center">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
             <Terminal className="h-3.5 w-3.5" />
@@ -82,12 +82,12 @@ const Apis = () => {
       </section>
 
       {/* Categories */}
-      <section className="relative py-20 circuit-bg overflow-visible">
+      <section className="relative py-20 circuit-bg overflow-hidden">
         {/* Larger, more immersive background glows for APIs page */}
-        <div className="pointer-events-none absolute top-[5%] left-[5%] h-[700px] w-[700px] rounded-full bg-primary/[0.06] blur-[180px] -z-10" />
-        <div className="pointer-events-none absolute top-[35%] right-[0%] h-[650px] w-[650px] rounded-full bg-primary/[0.05] blur-[160px] -z-10" />
-        <div className="pointer-events-none absolute top-[60%] left-[15%] h-[700px] w-[700px] rounded-full bg-primary/[0.06] blur-[170px] -z-10" />
-        <div className="pointer-events-none absolute bottom-[5%] right-[10%] h-[600px] w-[600px] rounded-full bg-primary/[0.05] blur-[150px] -z-10" />
+        <div className="pointer-events-none absolute top-[5%] left-[5%] h-[70vw] max-h-[700px] w-[70vw] max-w-[700px] rounded-full bg-primary/[0.06] blur-[180px] -z-10" />
+        <div className="pointer-events-none absolute top-[35%] right-[0%] h-[65vw] max-h-[650px] w-[65vw] max-w-[650px] rounded-full bg-primary/[0.05] blur-[160px] -z-10" />
+        <div className="pointer-events-none absolute top-[60%] left-[15%] h-[70vw] max-h-[700px] w-[70vw] max-w-[700px] rounded-full bg-primary/[0.06] blur-[170px] -z-10" />
+        <div className="pointer-events-none absolute bottom-[5%] right-[10%] h-[60vw] max-h-[600px] w-[60vw] max-w-[600px] rounded-full bg-primary/[0.05] blur-[150px] -z-10" />
 
         <div className="container relative z-10 mx-auto px-6">
           {categories.map((cat) => (
