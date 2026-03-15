@@ -14,7 +14,9 @@ const Layout = () => {
         <div className="absolute top-[85%] left-1/2 -translate-x-1/2 h-[40vw] max-h-[400px] w-[50vw] max-w-[400px] rounded-full bg-primary/[0.03] blur-[110px]" />
       </div>
 
-      <Outlet />
+      <main className="flex-1">
+        <Outlet />
+      </main>
     </div>
   );
 };
