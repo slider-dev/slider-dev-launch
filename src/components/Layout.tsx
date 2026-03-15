@@ -3,7 +3,7 @@ import Navbar from "./Navbar";
 
 const Layout = () => {
   return (
-    <div className="min-h-screen bg-background relative w-full max-w-[100vw] overflow-x-hidden">
+    <div className="flex min-h-screen flex-col bg-background relative w-full max-w-[100vw] overflow-x-hidden">
       <Navbar />
 
       {/* Global background glows — centered to avoid overflow */}
