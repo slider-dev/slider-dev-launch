@@ -41,28 +41,27 @@ const apis = [
 
 const FeaturesGrid = () => {
   return (
-    <section id="apis" className="relative py-28 circuit-bg">
-      <div className="container mx-auto px-6">
-        <div className="mb-16 text-center">
-          <h2 className="font-display text-3xl font-bold md:text-4xl">
+    <section id="apis" className="relative py-12 md:py-16 circuit-bg overflow-hidden">
+      <div className="w-full px-4 sm:px-6 max-w-6xl mx-auto">
+        <div className="mb-8 md:mb-10 text-center">
+          <h2 className="font-display text-2xl sm:text-3xl font-bold md:text-4xl">
             Explore Our <span className="text-primary">APIs</span>
           </h2>
-          <p className="mx-auto mt-4 max-w-lg text-muted-foreground">
+          <p className="mx-auto mt-2 md:mt-3 max-w-lg text-sm sm:text-base text-muted-foreground">
             Production-ready endpoints designed for speed, reliability, and
             developer happiness.
           </p>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {apis.map((api) => (
             <div
               key={api.title}
-              className="glass group relative rounded-lg p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-[0_0_30px_hsl(25_95%_53%/0.08)]"
+              className="glass group relative rounded-lg p-4 sm:p-5 transition-all duration-300 hover:border-primary/30 hover:shadow-[0_0_30px_hsl(25_95%_53%/0.08)]"
             >
-              {/* Status indicator */}
-              <div className="mb-4 flex items-center justify-between">
-                <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10 text-primary">
-                  <api.icon className="h-5 w-5" />
+              <div className="mb-3 flex items-center justify-between">
+                <div className="flex h-9 w-9 items-center justify-center rounded-md bg-primary/10 text-primary">
+                  <api.icon className="h-4 w-4" />
                 </div>
                 <span
                   className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-medium ${
@@ -80,12 +79,12 @@ const FeaturesGrid = () => {
                 </span>
               </div>
 
-              <h3 className="font-display text-lg font-semibold">{api.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              <h3 className="font-display text-base sm:text-lg font-semibold">{api.title}</h3>
+              <p className="mt-1.5 text-xs sm:text-sm leading-relaxed text-muted-foreground">
                 {api.description}
               </p>
 
-              <div className="mt-4 text-sm font-medium text-primary opacity-0 transition-opacity group-hover:opacity-100">
+              <div className="mt-3 text-xs sm:text-sm font-medium text-primary opacity-0 transition-opacity group-hover:opacity-100">
                 View docs →
               </div>
             </div>
